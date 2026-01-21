@@ -1,0 +1,55 @@
+// vim:ts=4:sw=4:et
+{
+    "layout": "splitv",
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1080,
+               "width": 1420,
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "Firefox",
+            "percent": 0.4,
+            "swallows": [
+               {
+               "class": "^firefox$"
+               // "instance": "^Navigator$",
+               // "machine": "^mainarch$",
+               // "title": "^Saving\\ i3\\ window\\ layouts\\ and\\ workspace\\ configurations\\ \\-\\ Claude\\ \\—\\ Mozilla\\ Firefox$",
+               // "window_role": "^browser$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "none",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1038,
+               "width": 948,
+               "x": 963,
+               "y": 656
+            },
+            "marks": [],
+            "name": "Obsidian",
+            "percent": 0.6,
+            "swallows": [
+               {
+               "class": "^obsidian$"
+               // "instance": "^obsidian$",
+               // "machine": "^mainarch$",
+               // "title": "^i3\\ Auto\\ Layout\\ \\-\\ 0x2Elang\\ \\-\\ Obsidian\\ v1\\.10\\.6$",
+               // "window_role": "^browser\\-window$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
