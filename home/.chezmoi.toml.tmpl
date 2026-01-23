@@ -1,0 +1,65 @@
+# This creates the config file at `~/.config/chezmoi/chezmoi.toml` which contains template 
+# variables (like `$email`, `$hostname`, `$work`, `$personal`) that are used by all subsequent 
+# template files. It detects system info or prompts the user.
+
+{{/* Boolean feature flags used by other templates */}}
+
+{{/* 
+  containerised: true if running inside a container
+  work:          true if this is a work machine
+  headless:      true if no screen/keyboard
+  personal:      true if personal secrets are allowed
+*/}}
+
+{{- $containerised := false -}}
+{{- $work := false -}}
+{{- $headless := false -}}
+{{- $personal := false -}}
+
+{{- "" -}}
+
+{{/* 
+  Derive a stable OS identifier for conditional logic.
+  On Linux, include the distro ID (from /etc/os-release), e.g.:
+    linux-ubuntu, linux-arch
+  On other platforms, fall back to the OS name:
+    darwin, windows
+*/}}
+
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{/* Detect Docker or Podman containers */}}
+
+{{- if or (stat "/.dockerenv") (stat "/run/.containerenv") -}}
+{{-   $containerised = true -}}
+{{- end -}}
+
+{{/* Mark personal machines by hostname; assume unknown machines are containers */}}
+
+{{- if not $containerised -}}
+{{-   if eq $hostname "desktop-personal" -}}
+{{-     $personal = true -}}
+{{-   else if eq $hostname "tablet-personal" -}}
+{{-     $personal = true -}}
+{{-   else if eq $hostname "server-personal" -}}
+{{-     $personal = true -}}
+{{-   else -}}
+{{-     $containerised = true -}}
+{{-     $headless = true -}}
+{{-   end -}}
+{{- end -}}
+
+# [data] contains machine-specific flags and identifiers used by all templates.
+# Templates read these values to decide which configs to apply (personal, work,
+# containerised, headless) and to handle OS-specific logic.
+
+[data]
+    containerised = {{ $containerised }}
+    work = {{ $work }}
+    headless = {{ $headless }}
+    hostname = {{ $hostname | quote }}
+    personal = {{ $personal }}
+    osid = {{ $osID | quote }}
