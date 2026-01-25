@@ -298,12 +298,14 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+{{ if eq .chezmoi.hostname "desktop-personal" -}}
 # use workspaces on different displays
 workspace $ws1 output DP-4
 workspace $ws2 output DP-2
 workspace $ws3 output DP-4
 workspace $ws4 output DP-4
 workspace $ws5 output DP-2
+{{ end -}}
 
 # It is possible to bind a program to a workspace - REMOVED:
 # assign [class="Xfce4-terminal"] $ws1
@@ -569,7 +571,9 @@ bindsym $mod+t exec --no-startup-id rofi -show window \
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
 #		-config ~/.config/rofi/rofidmenu.rasi
 
-# Load and apply layouts
+# Machine-specific: Load workspace layouts
+{{ if eq .chezmoi.hostname "desktop-personal" -}}
 # Workspace 2: 40/60 Firefox/Obsidian on second vertical monitor.
 exec --no-startup-id sleep 1 && i3-msg workspace $ws2
 exec --no-startup-id sleep 2 && i3-msg append_layout ~/.config/i3/workspace-2.json
+{{ end -}}
