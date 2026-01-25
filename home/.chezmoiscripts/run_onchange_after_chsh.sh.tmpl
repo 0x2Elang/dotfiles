@@ -1,0 +1,11 @@
+{{- /*
+    Change default shell to zsh on any machine with a display/keyboard.
+    Skips headless servers and containers.
+*/ -}}
++{{ if (not .headless) -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+chsh -s /usr/bin/zsh
+{{ end -}}
