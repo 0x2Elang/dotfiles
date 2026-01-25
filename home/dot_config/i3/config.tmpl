@@ -368,12 +368,14 @@ exec --no-startup-id dex --autostart --environment i3
 # start conky:
 #exec_always --no-startup-id conky
 
-# Monitor setup
-exec_always --no-startup-id xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 1920x0 --rotate right --output DP-3 --off --output DP-4 --mode 1920x1080 --pos 0x647 --rotate normal --output DP-5 --off
-
-# Set wallpapers with xwallpaper
-exec_always --no-startup-id sleep 1 && xwallpaper --output DP-4 --zoom ~/.local/share/wallpapers/endeavour_os_simple_wallpaper_dark_1920_1080.png
-exec_always --no-startup-id sleep 3 && xwallpaper --output DP-2 --zoom ~/.local/share/wallpapers/endeavour_os_simple_wallpaper_dark_1440_2560.png
++{{ if eq .chezmoi.hostname "desktop-personal" -}}
+ # Monitor setup
+ exec_always --no-startup-id xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --off --output DP-1 --off --output DP-2 --mode 2560x1440 --pos 1920x0 --rotate right --output DP-3 --off --output DP-4 --mode 1920x1080 --pos 0x647 --rotate normal --output DP-5 --off
+ 
+ # Set wallpapers with xwallpaper
+ exec_always --no-startup-id sleep 1 && xwallpaper --output DP-4 --zoom ~/.local/share/wallpapers/endeavour_os_simple_wallpaper_dark_1920_1080.png
+ exec_always --no-startup-id sleep 3 && xwallpaper --output DP-2 --zoom ~/.local/share/wallpapers/endeavour_os_simple_wallpaper_dark_1440_2560.png
++{{ end -}}
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
