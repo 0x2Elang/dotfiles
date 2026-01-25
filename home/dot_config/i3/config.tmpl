@@ -569,18 +569,7 @@ bindsym $mod+t exec --no-startup-id rofi -show window \
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
 #		-config ~/.config/rofi/rofidmenu.rasi
 
-
-# Replace your current CrossCode rules with these adjusted ones:
-for_window [class="CrossCode"] floating enable
-for_window [class="CrossCode"] resize set 1900 1040
-for_window [class="CrossCode"] move position center
-
-# Add Flameshot shortcut
-bindsym $mod+Shift+s exec flameshot gui
-
 # Load and apply layouts
 # Workspace 2: 40/60 Firefox/Obsidian on second vertical monitor.
 exec --no-startup-id sleep 1 && i3-msg workspace $ws2
 exec --no-startup-id sleep 2 && i3-msg append_layout ~/.config/i3/workspace-2.json
-
-
