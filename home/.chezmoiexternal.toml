@@ -1,5 +1,13 @@
+{{- /*
+  Clone scripts repo only on:
+  - Personal machines (.personal = true)
+  - With display/keyboard (.headless = false)
+  - Running Linux
+*/ -}}
+{{ if and .personal (not .headless) (eq .chezmoi.os "linux") -}}
 ["scripts"]
     type = "git-repo"
     url = "git@github.com:0x2Elang/scripts.git"
     ["scripts".clone]
         args = ["--depth", "1"]
++{{ end -}}
