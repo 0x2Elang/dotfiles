@@ -1,0 +1,7 @@
+{{ if and (not .headless) (lookPath "pacman") -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+sudo pacman -S --needed --noconfirm ghostty
+{{ end -}}
