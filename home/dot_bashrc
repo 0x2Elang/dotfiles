@@ -11,3 +11,7 @@ PS1='[\u@\h \W]\$ '
 
 # Personal shortcuts
 alias chezmoi-config='cat ~/.config/chezmoi/chezmoi.toml'
+
+# Make ZED the default editor
+export EDITOR=zed
+export VISUAL=zed
