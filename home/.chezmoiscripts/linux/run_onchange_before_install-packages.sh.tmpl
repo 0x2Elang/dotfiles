@@ -1,0 +1,28 @@
+{{ if eq .osid "linux-arch" "linux-endeavouros" -}}
+
+{{ $packages := list
+     "bat"
+     "zed"
+     "zsh" -}}
+
+{{ if not .headless -}}
+{{/* Left empty for future use. */}}
+{{ end -}}
+
+{{ if .personal -}}
+{{/* Left empty for future use. */}}
+{{ end -}}
+
+{{/* Use sudo unless already root e.g. in containers or VPS bootstrap */}}
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{   $sudo = "" -}}
+{{ end -}}
+
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $sudo }}pacman -Syu --needed --noconfirm {{ $packages | join " " }}
+
+{{ end -}}
