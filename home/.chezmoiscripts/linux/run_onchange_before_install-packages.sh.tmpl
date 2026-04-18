@@ -23,6 +23,6 @@
 
 set -eufo pipefail
 
-{{ $sudo }}pacman -Syu --needed --noconfirm {{ $packages | join " " }}
+{{ $sudo }}pacman -Sy --needed --noconfirm {{ $packages | join " " }}
 
 {{ end -}}
