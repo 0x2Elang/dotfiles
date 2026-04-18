@@ -6,14 +6,14 @@
      "zsh" -}}
 
 {{ if not .headless -}}
-{{/* Left empty for future use. */}}
+{{/* Left empty for future use. */ -}}
 {{ end -}}
 
 {{ if .personal -}}
-{{/* Left empty for future use. */}}
+{{/* Left empty for future use. */ -}}
 {{ end -}}
 
-{{/* Use sudo unless already root e.g. in containers or VPS bootstrap */}}
+{{/* Use sudo unless already root e.g. in containers or VPS bootstrap */ -}}
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
 {{   $sudo = "" -}}
