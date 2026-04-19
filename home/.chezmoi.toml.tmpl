@@ -1,25 +1,29 @@
-# This creates the config file at `~/.config/chezmoi/chezmoi.toml` which contains template 
-# variables (like `$email`, `$hostname`, `$work`, `$personal`) that are used by all subsequent 
+# This creates the config file at `~/.config/chezmoi/chezmoi.toml` which contains template
+# variables (like `$email`, `$hostname`, `$work`, `$personal`) that are used by all subsequent
 # template files. It detects system info or prompts the user.
 
 {{/* Boolean feature flags used by other templates */}}
 
-{{/* 
+{{/*
   containerised: true if running inside a container
   work:          true if this is a work machine
   headless:      true if no screen/keyboard
   personal:      true if personal secrets are allowed
+  i3:            true if this machine runs i3wm
+  plasma:        true if this machine runs KDE Plasma
 */}}
 
 {{- $containerised := false -}}
 {{- $work := false -}}
 {{- $headless := false -}}
 {{- $personal := false -}}
+{{- $i3 := false -}}
+{{- $plasma := false -}}
 {{- $hostname := .chezmoi.hostname -}}
 
 {{- "" -}}
 
-{{/* 
+{{/*
   Derive a stable OS identifier for conditional logic.
   On Linux, include the distro ID (from /etc/os-release), e.g.:
     linux-ubuntu, linux-arch
@@ -43,10 +47,12 @@
 {{- if not $containerised -}}
 {{-   if eq $hostname "desktop-personal" -}}
 {{-     $personal = true -}}
+{{-     $i3 = true -}}
 {{-   else if eq $hostname "tablet-personal" -}}
 {{-     $personal = true -}}
 {{-   else if eq $hostname "server-personal" -}}
 {{-     $personal = true -}}
+{{-     $plasma = true -}}
 {{-   else -}}
 {{-     $containerised = true -}}
 {{-     $headless = true -}}
@@ -59,6 +65,8 @@
 
 [data]
     containerised = {{ $containerised }}
+    i3 = {{ $i3 }}
+    plasma = {{ $plasma }}
     work = {{ $work }}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
