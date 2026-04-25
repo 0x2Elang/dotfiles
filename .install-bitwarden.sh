@@ -2,7 +2,10 @@
 set -e
 
 # Set EU server (idempotent — bw config server is safe to re-run)
-bw config server https://vault.bitwarden.com
+STATUS=$(bw status 2>/dev/null | grep -o '"status":"[^"]*"' | cut -d'"' -f4)
+if [ -z "$STATUS" ] || [ "$STATUS" = "unauthenticated" ]; then
+    bw config server https://vault.bitwarden.com
+fi
 
 # exit immediately if password-manager-binary is already in $PATH
 type bw >/dev/null 2>&1 && exit
