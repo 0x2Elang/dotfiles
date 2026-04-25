@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# Set EU server (idempotent — bw config server is safe to re-run)
+# Set US server (idempotent, bw config server is safe to re-run)
 STATUS=$(bw status 2>/dev/null | grep -o '"status":"[^"]*"' | cut -d'"' -f4)
 if [ -z "$STATUS" ] || [ "$STATUS" = "unauthenticated" ]; then
     bw config server https://vault.bitwarden.com
