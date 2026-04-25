@@ -34,7 +34,7 @@ fi
 
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
-bw get item "SSH Key" | grep -o '"privateKey":"[^"]*"' | cut -d'"' -f4 > "$SSH_KEY"
+bw get item "github_ed25519_0x2Elang" | grep -o '"privateKey":"[^"]*"' | cut -d'"' -f4 > "$SSH_KEY"
 chmod 600 "$SSH_KEY"
 ssh-keygen -y -f "$SSH_KEY" > "${SSH_KEY}.pub"
 
