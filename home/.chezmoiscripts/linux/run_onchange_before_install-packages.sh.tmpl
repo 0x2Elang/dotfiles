@@ -6,11 +6,11 @@
      "zsh" -}}
 
 {{ if not .headless -}}
-{{/* Left empty for future use. */ -}}
+    {{   $packages = concat $packages (list "firefox" "obsidian" "libreoffice-still") -}}
 {{ end -}}
 
 {{ if .personal -}}
-{{/* Left empty for future use. */ -}}
+    {{   $packages = concat $packages (list "signal" "steam" "discord") -}}
 {{ end -}}
 
 {{/* Use sudo unless already root e.g. in containers or VPS bootstrap */ -}}
