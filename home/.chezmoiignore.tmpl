@@ -2,14 +2,6 @@
 .chezmoiscripts/linux/**
 {{ end }}
 
-{{ if ne .chezmoi.os "windows" }}
-.chezmoiscripts/windows/**
-{{ else }}
-.bash_aliases
-.config/ghostty
-.ssh/**
-{{ end }}
-
 {{ if not .personal }}
 .ssh
 .ssh/**
