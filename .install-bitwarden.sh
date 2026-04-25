@@ -2,7 +2,7 @@
 set -e
 
 # Set EU server (idempotent — bw config server is safe to re-run)
-bw config server https://vault.bitwarden.eu
+bw config server https://vault.bitwarden.com
 
 # exit immediately if password-manager-binary is already in $PATH
 type bw >/dev/null 2>&1 && exit
