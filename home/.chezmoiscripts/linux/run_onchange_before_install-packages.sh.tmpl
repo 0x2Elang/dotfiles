@@ -10,7 +10,7 @@
 {{ end -}}
 
 {{ if .personal -}}
-    {{   $packages = concat $packages (list "signal" "steam" "discord") -}}
+    {{   $packages = concat $packages (list "signal-desktop" "steam" "discord") -}}
 {{ end -}}
 
 {{/* Use sudo unless already root e.g. in containers or VPS bootstrap */ -}}
