@@ -15,3 +15,7 @@ alias chezmoi-config='cat ~/.config/chezmoi/chezmoi.toml'
 # Make ZED the default editor
 export EDITOR=zed
 export VISUAL=zed
+
+# Make virsh, virt-manager, virt-install talk to the SYSTEM libvirt daemon
+# (qemu:///system) by default, instead of the per-user SESSION daemon.
+export LIBVIRT_DEFAULT_URI='qemu:///system'
